@@ -178,6 +178,11 @@
 	var/mob/living/carbon/xenomorph/puppet/puppet = new(victim_turf, owner)
 	puppet.name = victim.name
 	puppet.voice = victim.voice
+		var/obj/item/clothing/suit/victimarmor = victim.wear_suit
+	var/image/victimarmor_img = image(victimarmor.icon, src, victimarmor.icon_state)
+	victimarmor_img.layer = puppet.layer + 1
+	puppet.overlays += victimarmor_img
+
 	add_puppet(puppet)
 	add_cooldown()
 
