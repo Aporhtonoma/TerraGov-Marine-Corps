@@ -178,9 +178,28 @@
 	var/mob/living/carbon/xenomorph/puppet/puppet = new(victim_turf, owner)
 	puppet.name = victim.name
 	puppet.voice = victim.voice
-		var/obj/item/clothing/suit/victimarmor = victim.wear_suit
+
+
+	//var/obj/item/clothing/suit/modular/victimmodulars = victim.
+	//for(var/obj/item/stored AS in storage_module.contents)
+
+		//standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
+	var/obj/item/clothing/shoes/victimshoes = victim.shoes.make_worn_icon(species_type = victim.species.name, slot_name = slot_shoes_str, default_icon = 'icons/mob/clothing/feet.dmi', default_layer = SUIT_LAYER)
+	var/obj/item/clothing/mask/victimmask = victim.wear_mask.make_worn_icon(species_type = victim.species.name, slot_name = slot_wear_mask_str, default_icon = 'icons/mob/clothing/mask.dmi', default_layer = FACEMASK_LAYER)
+	var/obj/item/clothing/shoes/victimgloves = victim.gloves.make_worn_icon(species_type = victim.species.name, slot_name = slot_gloves_str, default_icon = 'icons/mob/clothing/hands.dmi', default_layer = GLOVES_LAYER)
+	//var/obj/item/clothing/suit/victimarmor = victim.wear_suit.make_worn_icon(species_type = victim.species.name, slot_name = slot_wear_suit_str, default_icon = 'icons/mob/clothing/suits/suit_0.dmi', default_layer = SUIT_LAYER)
+	var/image/victimmask_img = image(victimmask.icon, src, victimmask.icon_state)
+	var/image/victimshoes_img = image(victimshoes.icon, src, victimshoes.icon_state)
+	var/image/victimgloves_img = image(victimgloves.icon, src, victimgloves.icon_state)
 	var/image/victimarmor_img = image(victimarmor.icon, src, victimarmor.icon_state)
-	victimarmor_img.layer = puppet.layer + 1
+	//victimmask_img.layer = puppet.layer + 1
+	//victimshoes_img.layer = puppet.layer + 1
+	//victimgloves_img.layer = puppet.layer + 1
+	//victimarmor_img.layer = puppet.layer + 1
+	//puppet.overlays += victim.overlays
+	puppet.overlays += victimmask_img
+	puppet.overlays += victimshoes_img
+	puppet.overlays += victimgloves_img
 	puppet.overlays += victimarmor_img
 
 	add_puppet(puppet)
