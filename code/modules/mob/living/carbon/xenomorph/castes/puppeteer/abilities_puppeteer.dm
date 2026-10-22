@@ -179,7 +179,7 @@
 	puppet.name = victim.name
 	puppet.voice = victim.voice
 
-
+	//failed 1
 	//var/obj/item/clothing/shoes/victimshoes = victim.shoes.make_worn_icon(species_type = victim.species.name, slot_name = slot_shoes_str, default_icon = 'icons/mob/clothing/feet.dmi', default_layer = SUIT_LAYER)
 	//var/obj/item/clothing/mask/victimmask = victim.wear_mask.make_worn_icon(species_type = victim.species.name, slot_name = slot_wear_mask_str, default_icon = 'icons/mob/clothing/mask.dmi', default_layer = FACEMASK_LAYER)
 	//var/obj/item/clothing/shoes/victimgloves = victim.gloves.make_worn_icon(species_type = victim.species.name, slot_name = slot_gloves_str, default_icon = 'icons/mob/clothing/hands.dmi', default_layer = GLOVES_LAYER)
@@ -205,24 +205,24 @@
 	var/mutable_appearance/stolen_image_testchest1
 	var/mutable_appearance/stolen_image_testchest2
 	var/mutable_appearance/stolen_image_testchest3
-	stolen_image = get_vv_appearance(victim.overlays[6])
+	stolen_image = new(victim.overlays[6])
 	//forgive me father for i have sinned (buddy we cant be adding 3 extra overlays for free but i h)
-	stolen_image_testchest1 = get_vv_appearance(stolen_image.overlays[1])
-	stolen_image_testchest2 = get_vv_appearance(stolen_image.overlays[2])
-	stolen_image_testchest3 = get_vv_appearance(stolen_image.overlays[3])
+	stolen_image_testchest1 = new(stolen_image.overlays[1])
+	stolen_image_testchest2 = new(stolen_image.overlays[2])
+	stolen_image_testchest3 = new(stolen_image.overlays[3])
 	//BREAKS WHEN USED MATTER OF FACT DONT THINK IT EVEN WORKS AT ALL fix
-	//stolen_image.pixel_x = 2
-	//stolen_image.pixel_y = 2
+	stolen_image_testchest1.layer =puppet.layer + 1
+	stolen_image_testchest2.layer =puppet.layer + 1
+	stolen_image_testchest3.layer =puppet.layer + 1
+	stolen_image.layer = puppet.layer + 1
+	stolen_image.pixel_x = 2
+	stolen_image.pixel_y = 2
 	stolen_image_testchest1.pixel_x = 2
 	stolen_image_testchest2.pixel_x = 2
 	stolen_image_testchest3.pixel_x = 2
 	stolen_image_testchest1.pixel_y = 2
 	stolen_image_testchest2.pixel_y = 2
 	stolen_image_testchest3.pixel_y = 2
-	stolen_image_testchest1.layer =puppet.layer + 1
-	stolen_image_testchest2.layer =puppet.layer + 1
-	stolen_image_testchest3.layer =puppet.layer + 1
-	stolen_image.layer = puppet.layer + 1
 	puppet.overlays += stolen_image
 	puppet.overlays += stolen_image_testchest1
 	puppet.overlays += stolen_image_testchest2
@@ -230,7 +230,6 @@
 
 	//puppet.overlays += victim.overlays[6]//correctly copies but does not center
 
-	//puppet.overlays += victim.attachable_overlays
 
 	add_puppet(puppet)
 	add_cooldown()
