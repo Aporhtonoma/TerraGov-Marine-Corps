@@ -201,34 +201,42 @@
 	//puppet.overlays += victimmask_img
 	//puppet.overlays += victimshoes_img
 	//puppet.overlays += victimgloves_img
-	var/mutable_appearance/stolen_image
-	var/mutable_appearance/stolen_image_testchest1
-	var/mutable_appearance/stolen_image_testchest2
-	var/mutable_appearance/stolen_image_testchest3
-	stolen_image = new(victim.overlays[6])
-	//forgive me father for i have sinned (buddy we cant be adding 3 extra overlays for free but i h)
-	stolen_image_testchest1 = new(stolen_image.overlays[1])
-	stolen_image_testchest2 = new(stolen_image.overlays[2])
-	stolen_image_testchest3 = new(stolen_image.overlays[3])
-	//BREAKS WHEN USED MATTER OF FACT DONT THINK IT EVEN WORKS AT ALL fix
-	stolen_image_testchest1.layer =puppet.layer + 1
-	stolen_image_testchest2.layer =puppet.layer + 1
-	stolen_image_testchest3.layer =puppet.layer + 1
-	stolen_image.layer = puppet.layer + 1
-	stolen_image.pixel_x = 2
-	stolen_image.pixel_y = 2
-	stolen_image_testchest1.pixel_x = 2
-	stolen_image_testchest2.pixel_x = 2
-	stolen_image_testchest3.pixel_x = 2
-	stolen_image_testchest1.pixel_y = 2
-	stolen_image_testchest2.pixel_y = 2
-	stolen_image_testchest3.pixel_y = 2
-	puppet.overlays += stolen_image
-	puppet.overlays += stolen_image_testchest1
-	puppet.overlays += stolen_image_testchest2
-	puppet.overlays += stolen_image_testchest3
+	//var/mutable_appearance/stolen_image
+	//var/mutable_appearance/stolen_image_testchest1
+	//var/mutable_appearance/stolen_image_testchest2
+	//var/mutable_appearance/stolen_image_testchest3
+	//stolen_image = new(victim.overlays[6])
 
-	//puppet.overlays += victim.overlays[6]//correctly copies but does not center
+	//forgive me father for i have sinned (buddy we cant be adding 3 extra overlays for free but i h)
+	//stolen_image_testchest1 = new(stolen_image.overlays[1])
+	//stolen_image_testchest2 = new(stolen_image.overlays[2])
+	//stolen_image_testchest3 = new(stolen_image.overlays[3])
+	//BREAKS WHEN USED MATTER OF FACT DONT THINK IT EVEN WORKS AT ALL fix
+	//stolen_image_testchest1.layer =puppet.layer + 1
+	//stolen_image_testchest2.layer =puppet.layer + 1
+	//stolen_image_testchest3.layer =puppet.layer + 1
+	//stolen_image.layer = puppet.layer + 1
+	//stolen_image.pixel_x = 2
+	//stolen_image.pixel_y = 2
+	//stolen_image_testchest1.pixel_x = 2
+	//stolen_image_testchest2.pixel_x = 2
+	//stolen_image_testchest3.pixel_x = 2
+	//stolen_image_testchest1.pixel_y = 2
+	//stolen_image_testchest2.pixel_y = 2
+	//tolen_image_testchest3.pixel_y = 2
+	//puppet.overlays += stolen_image
+	//puppet.overlays += stolen_image_testchest1
+	//puppet.overlays += stolen_image_testchest2
+	//puppet.overlays += stolen_image_testchest3
+	//works
+var/mutable_appearance/victim_suit = victim.overlays_standing[SUIT_LAYER]
+	if (victim_suit)
+		var/mutable_appearance/stolen_suit = new(victim_suit)
+		stolen_suit.pixel_w += 1
+		stolen_suit.pixel_z += 2
+		stolen_suit.layer = -SUIT_LAYER
+		puppet.overlays += stolen_suit
+
 
 
 	add_puppet(puppet)
